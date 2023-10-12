@@ -8,8 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import hr.goodapp.androidlivedatapreviewbug.ui.TestViewModel
 import hr.goodapp.androidlivedatapreviewbug.ui.theme.AndroidLiveDataPreviewBugTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Greeting("Androidsdfsfsf")
                 }
             }
         }
@@ -31,8 +35,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    val liveData = viewModel<TestViewModel>()
+    val result by liveData.bugWithPreview().observeAsState()
     Text(
-        text = "Hello $name!",
+        text = "Hello $result!",
         modifier = modifier
     )
 }
